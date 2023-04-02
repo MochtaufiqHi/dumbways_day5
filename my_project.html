@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+  <head>
+    <title>Bacth 46</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav>
+      <div class="nav-left">
+        <ul>
+          <img src="assets/img/logo.png" alt="logo_dumbways">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="">Blog</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-right">
+        <a href="contact_form.html">Contact Me</a>
+      </div>
+    </nav>
+
+    <!-- Form project -->
+    <form onsubmit="getBlog(event)">
+      <h1 style="text-align: center;">ADD MY PROJECT</h1>
+      <div>
+        <label for="projectName">ProjectName</label>
+        <input type="text" id="projectName">
+      </div>
+      <div class="date-input">
+        <div class="left-date-start">
+          <label for="start-date">Start Date</label>
+          <input type="date" id="start-date">
+        </div>
+        <div class="right-date-start">
+          <label for="end-date">End Date</label>
+          <input type="date" id="end-date">
+        </div>
+      </div>
+      <div>
+        <label for="description">Description</label>
+        <textarea name="" id="description" cols="30" rows="10"></textarea>
+      </div>
+      <div >
+        <label for="tech">Technologies</label>
+        <div class="grid-container-icon">
+          <div class="grid-item-icon">
+            <input type="checkbox" id="nodeJs">
+            <label for="">Node Js</label>
+          </div>
+          <div class="grid-item-icon">
+            <input type="checkbox" id="reactJs">
+            <label for="">React Js</label>
+          </div>
+          <div class="grid-item-icon">
+            <input type="checkbox" id="nextJs">
+            <label for="">Next Js</label>
+          </div>
+          <div class="grid-item-icon">
+            <input type="checkbox" id="typescript">
+            <label for="">Typescript</label>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label for="uploadImg">Upload Image</label>
+        <input type="file" id="inputBlog">
+      </div>
+      <div class="btn-sub">
+        <button>Submit</button>
+      </div>
+    </form>
+
+    <!-- Blog content -->
+    <div class="cover-grid">
+        <!-- dynamic content would be here -->
+        <div class="grid-container" id="contents">
+          <!-- item grid -->
+          <div class="grid-item">
+            <img class="img-project" src="assets/img/blog.jpeg" alt="project">
+            <div class="info-project">
+              <h3>Project Name</h3>
+              <p style="opacity: 0.8;">durasi: 3 bulan</p>
+              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis sed autem iure quidem cumque, odio magnam quasi odit quisquam accusamus!</p>
+            </div>
+            <div class="framework-logo">
+              <div style="visibility: visible;">
+                <img src="assets/img/nextJs.png" alt="NextJs">
+              </div>
+              <div style="visibility: visible;">
+                <img src="assets/img/reactjs.png" alt="ReactJs">
+              </div>
+              <div style="visibility: visible;">
+                <img src="assets/img/nodejs.png" alt="NodeJs">
+              </div>
+              <div style="visibility: visible;">
+                <img src="assets/img/ts.png" alt="">
+              </div>
+            </div>
+            <div class="btn-project">
+              <button>edit</button>
+              <button>delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </body>
+  <!-- <script src="assets/js/script.js"></script> -->
+  <script src="assets/js/blog.js"></script>
+</html>
