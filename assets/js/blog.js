@@ -36,7 +36,6 @@ function getBlog(event){
   console.log(blogs)
   // call function renderBlog()
   renderBlog()
-
 }
 
 function renderBlog() {

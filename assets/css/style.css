@@ -1,10 +1,13 @@
 /* import font google poppins */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Chivo+Mono&family=Oswald:wght@200;300;400;500;600;700&family=Poppins:wght@400;500;600&family=Source+Sans+Pro:wght@200;400;600&display=swap');
 
 body {
   margin: 0;
-  font-family: poppins;
+  /* font-family: poppins; */
+  font-family: Chivo Mono Family;
   box-sizing: border-box;
+  background-color: #a9ece3;
 }
 
 
@@ -14,8 +17,9 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #DAF5FF;
+  background-color: #159895;
   padding: 0 40px;
+  box-shadow: 0px 1px 10px yellow;
 }
 
 nav img {
@@ -36,12 +40,13 @@ nav img {
 
 .nav-left ul li a {
   text-decoration: none;
-  color: black;
+  color: white;
+  font-weight: bold;
 }
 
 .nav-right a {
-  color: white;
-  background-color: black;
+  color: #002B5B;
+  background-color: white;
   text-decoration: none; 
   padding: 8px 20px;
   border-radius: 5px;
@@ -56,6 +61,7 @@ nav img {
   width: calc(100% - 400px);
   border-radius: 10px;
   box-shadow: 2px 2px 8px rgb(168, 184, 219);
+  background-color: white;
 }
 
 .content-left {
@@ -152,17 +158,23 @@ form div {
 label {
   font-weight: bold;
   font-size: 18px;
+  color: #002B5B;
 }
 
 input, 
 select, 
 textarea {
   width: 100%;
-  background-color: #DAF5FF;
+  color: white;
+  background-color: #159895;
   border-radius: 5px;
   border: 1px solid rgb(165, 165, 165);
   padding: 10px;
   margin-top: 5px;
+}
+
+input {
+  box-shadow: 4px 4px 2px yellow;
 }
 
 textarea {
@@ -197,7 +209,7 @@ div.date-input {
 } */
 
 div.right-date-start {
-  margin-left: 5%;
+  margin-left: 33px;
 }
 
 /* ---------------------------- */
@@ -250,7 +262,7 @@ div.btn-sub button {
 /* Project item styling */
 
 .cover-grid {
-  background-color: #B0DAFF;
+  background-color: #1A5F7A;
 }
 
 .grid-container {
