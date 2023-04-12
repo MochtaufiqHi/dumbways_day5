@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+body {
+  font-family: Poppins;
+}
+
+.btn-contact {
+  background-color: orangered;
+  border: none;
+}
+
+.navbar-bg {
+  background-color: black !important;
+}
+
+.active {
+  color: orangered !important;
+}
+
+.img-thumbnail {
+  height: 240px !important;
+}
+
+.text-card {
+  text-align: justify !important;
+}
+
+.container-profile {
+  border: 1px solid rgb(214, 214, 214);
+  border-radius: 10px;
+}
+
+.btn-dark {
+  border-radius: 20px !important;
+}
+
+.social-icons {
+  width: 30px;
+  height: 30px;
+  background-color: black;
+  border-radius: 20px;
+}
+.links-icon {
+  justify-content: start;
+}
+
+
+@media screen and (max-width: 1000px) {
+  .card {
+    width: 14rem !important;
+  }
+  .links-icon {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .profile-index {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .container-left {
+    width: 100% !important;
+  }
+  .col-4 {
+    margin-top: 30px;
+    width: 100% !important;
+  }
+  .card {
+    width: 16rem !important;
+    margin: 0px auto;
+  }
+}
+
+@media screen and (max-width: 490px) {
+ p.text-card {
+  font-size: 14px !important;
+ }
+}
+
+
