@@ -1,111 +1,105 @@
 <!DOCTYPE html>
   <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bacth 46</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+    <link rel="stylesheet" href="assets/css/secondStyle.css">
   </head>
 
   <body>
     <!-- Navbar -->
-    <nav>
-      <div class="nav-left">
-        <ul>
-          <img src="assets/img/logo.png" alt="logo_dumbways">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="">Blog</a></li>
-        </ul>
-      </div>
-
-      <div class="nav-right">
-        <a href="contact_form.html">Contact Me</a>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-bg">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="assets/img/logo.png" alt="logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item mx-3 fw-bold fs-5">
+              <a class="nav-link text-light" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item mx-3 fw-bold fs-5">
+              <a class="nav-link active" href="my_project.html">Add Project</a>
+            </li>
+          </ul>
+          <div class="d-flex">
+            <a href="contact_form.html">
+              <button class="btn btn-contact text-light fw-bolder">Contact Me</button>
+            </a>
+          </div>
+        </div>
       </div>
     </nav>
 
     <!-- Form project -->
-    <form onsubmit="getBlog(event)">
+    <div class="container mt-5">
       <h1 style="text-align: center;">ADD MY PROJECT</h1>
-      <div>
-        <label for="projectName">ProjectName</label>
-        <input type="text" id="projectName">
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Project Name</label>
+        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="add your project">
       </div>
-      <div class="date-input">
-        <div class="left-date-start">
-          <label for="start-date">Start Date</label>
-          <input type="date" id="start-date">
+      <div class="row mb-3">
+        <div class="col">
+          <label for="exampleFormControlInput1" class="form-label">Start Date</label>
+          <input type="date" class="form-control" aria-label="First name">
         </div>
-        <div class="right-date-start">
-          <label for="end-date">End Date</label>
-          <input type="date" id="end-date">
-        </div>
-      </div>
-      <div>
-        <label for="description">Description</label>
-        <textarea name="" id="description" cols="30" rows="10"></textarea>
-      </div>
-      <div >
-        <label for="tech">Technologies</label>
-        <div class="grid-container-icon">
-          <div class="grid-item-icon">
-            <input type="checkbox" id="nodeJs">
-            <label for="">Node Js</label>
-          </div>
-          <div class="grid-item-icon">
-            <input type="checkbox" id="reactJs">
-            <label for="">React Js</label>
-          </div>
-          <div class="grid-item-icon">
-            <input type="checkbox" id="nextJs">
-            <label for="">Next Js</label>
-          </div>
-          <div class="grid-item-icon">
-            <input type="checkbox" id="typescript">
-            <label for="">Typescript</label>
-          </div>
+        <div class="col">
+          <label for="exampleFormControlInput1" class="form-label">End Date</label>
+          <input type="date" class="form-control" aria-label="Last name">
         </div>
       </div>
-      <div>
-        <label for="uploadImg">Upload Image</label>
-        <input type="file" id="inputBlog">
-      </div>
-      <div class="btn-sub">
-        <button>Submit</button>
-      </div>
-    </form>
 
-    <!-- Blog content -->
-    <div class="cover-grid">
-        <!-- dynamic content would be here -->
-        <div class="grid-container" id="contents">
-          <!-- item grid -->
-          <div class="grid-item">
-            <img class="img-project" src="assets/img/blog.jpeg" alt="project">
-            <div class="info-project">
-              <h3>Project Name</h3>
-              <p style="opacity: 0.8;">durasi: 3 bulan</p>
-              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis sed autem iure quidem cumque, odio magnam quasi odit quisquam accusamus!</p>
-            </div>
-            <div class="framework-logo">
-              <div style="visibility: visible;">
-                <img src="assets/img/nextJs.png" alt="NextJs">
-              </div>
-              <div style="visibility: visible;">
-                <img src="assets/img/reactjs.png" alt="ReactJs">
-              </div>
-              <div style="visibility: visible;">
-                <img src="assets/img/nodejs.png" alt="NodeJs">
-              </div>
-              <div style="visibility: visible;">
-                <img src="assets/img/ts.png" alt="">
-              </div>
-            </div>
-            <div class="btn-project">
-              <button>edit</button>
-              <button>delete</button>
-            </div>
-          </div>
+      <label for="exampleFormControlInput1" class="form-label">Technologies</label>
+      <div class="row justify-content-center">
+        <div class="col-5">
+          <input class="form-check-input mx-2" type="checkbox" value="" id="flexCheckChecked">
+          <label class="form-check-label" for="flexCheckChecked">
+            Node Js
+          </label>
+        </div>
+        <div class="col-5">
+          <input class="form-check-input mx-2" type="checkbox" value="" id="flexCheckChecked">
+          <label class="form-check-label" for="flexCheckChecked">
+            React Js
+          </label>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-5">
+          <input class="form-check-input mx-2" type="checkbox" value="" id="flexCheckChecked">
+          <label class="form-check-label" for="flexCheckChecked">
+            Next Js
+          </label>
+        </div>
+        <div class="col-5">
+          <input class="form-check-input mx-2" type="checkbox" value="" id="flexCheckChecked">
+          <label class="form-check-label" for="flexCheckChecked">
+            Typescript
+          </label>
         </div>
       </div>
     
+      <div class="mb-4">
+        <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="formFileSm" class="form-label">Upload Image</label>
+        <input class="form-control form-control-sm" id="formFileSm" type="file">
+      </div>
+      <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-dark fw-bolder">Sumbmit</button>
+      </div>
+    </div>
   </body>
   <!-- <script src="assets/js/script.js"></script> -->
   <script src="assets/js/blog.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </html>

@@ -4,8 +4,8 @@
 
 body {
   margin: 0;
-  /* font-family: poppins; */
-  font-family: Chivo Mono Family;
+  font-family: poppins;
+  /* font-family: Chivo; */
   box-sizing: border-box;
   background-color: #a9ece3;
 }
@@ -13,7 +13,7 @@ body {
 
 /* Navbar Styling */
 
-nav {
+/* nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -50,7 +50,7 @@ nav img {
   text-decoration: none; 
   padding: 8px 20px;
   border-radius: 5px;
-}
+} */
 
 /* Content Home Style */
 
