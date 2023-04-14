@@ -1,4 +1,3 @@
-// save the result object into an empty array
 let blogs = []
 
 function getBlog(event){

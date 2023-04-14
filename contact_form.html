@@ -38,37 +38,40 @@
     </nav>
 
     <!-- Form submission -->
-    <div class="container mt-5">
-      <h1 style="text-align: center;">TOUCH IN ME</h1>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Name</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1">
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Email</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1">
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Phone Number</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1">
-      </div>
-    
-      <div class="mb-4">
-        <label for="exampleFormControlTextarea1" class="form-label">Message</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-      </div>
+    <form action="#">
 
-      <label for="exampleFormControlTextarea1" class="form-label">Subject</label>
-      <select class="form-select" aria-label="Default select example">
+      <div class="container mt-5">
+        <h1 style="text-align: center;">TOUCH IN ME</h1>
+        <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="email" class="form-control" id="name">
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email">
+      </div>
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone Number</label>
+        <input type="email" class="form-control" id="phone">
+      </div>
+      
+      <label for="subject" class="form-label">Subject</label>
+      <select class="form-select" aria-label="Default select example" id="subject">
         <option selected>Let's Talk</option>
         <option value="1">Let's Collaboration</option>
         <option value="2">I am Hiring</option>
       </select>
-
+      
+      <div class="mb-4">
+        <label for="message" class="form-label">Message</label>
+        <textarea class="form-control" id="message" rows="3"></textarea>
+      </div>
+      
       <div class="d-flex justify-content-end mt-3">
-        <button type="button" class="btn btn-dark fw-bolder">Sumbmit</button>
+        <button type="button" class="btn btn-dark fw-bolder" onclick="getData()">Sumbmit</button>
       </div>
     </div>
+  </form>
   </body>
   <script src="assets/js/script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
