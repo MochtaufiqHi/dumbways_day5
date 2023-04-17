@@ -53,6 +53,8 @@ func main() {
 	e.GET("/detail-project/:id", detail)
 	e.POST("/add-project", addProject)
 	e.GET("/delete/:id", deleteProject)
+	e.GET("login", login)
+	e.GET("register", register)
 
 	e.Logger.Fatal(e.Start(":5000"))
 }
@@ -136,4 +138,24 @@ func deleteProject(c echo.Context) error {
 	dataProject = append(dataProject[:id], dataProject[id+1:]...)
 
 	return c.Redirect(http.StatusMovedPermanently, "/")
+}
+
+func login(c echo.Context) error {
+	tmpl, err := template.ParseFiles("views/login.html")
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
+	}
+
+	return tmpl.Execute(c.Response(), nil)
+}
+
+func register(c echo.Context) error {
+	tmpl, err := template.ParseFiles("views/register.html")
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
+	}
+
+	return tmpl.Execute(c.Response(), nil)
 }
