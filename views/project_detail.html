@@ -1,80 +1,77 @@
-<html>
+<!DOCTYPE html>
   <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creating Blog Page</title>
-    <link rel="stylesheet" href="public/css/style.css">
+    <!-- <link rel="stylesheet" href="public/css/style.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/public/css/secondStyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="crossorigin="anonymous"referrerpolicy="no-referrer"/>
   </head>
 
   <body>
     <!-- Navbar -->
-    <nav>
-      <div class="nav-left">
-        <ul>
-          <img src="public/img/logo.png" alt="logo_dumbways">
-          <li><a href="/">Home</a></li>
-          <li><a href="">Blog</a></li>
-        </ul>
-      </div>
-      
-      <div class="nav-right">
-        <a href="/contact">Contact Me</a>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-bg">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="/public/img/logo.png" alt="logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item mx-3 fw-bold fs-5">
+              <a class="nav-link active " aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item mx-3 fw-bold fs-5">
+              <a class="nav-link text-light" href="/project">Add Project</a>
+            </li>
+          </ul>
+          <div class="d-flex mb-0">
+            <a href="/contact">
+              <button class="btn btn-contact text-light fw-bolder">Contact Me</button>
+            </a>
+          </div>
+        </div>
       </div>
     </nav>
-    
-    <!-- Image and Property blog -->
-    <h1 style="text-align: center;">Dumbways Web App</h1>
-    <div class="detail-blog">
-      <!-- Image blog -->
-      <div class="detail-blog-left">
-        <img style="width: 100%;" src="public/img/blog.jpeg" alt="blog">
-      </div>
-      <!-- Property blog -->
-      <div class="detail-blog-right">
-        <h2 class="duration">Duration</h2>
-        <div>
+
+
+    <div class="container text-right">
+      <h1 style="text-align: center;" class="m-5">{{.ProjectName}}</h1>
+      <div class="row justify-content-between">
+        <div class="col-6">
+          <img class="img-project" style="width: 600px;" src="/public/img/project.jpeg" alt="blog"/>
+        </div>
+        <div class="col-4">
+          <h2 class="duration mb-4">Duration</h2>
           <div>
-            <p>
-            <i class="fa-solid fa-calendar-days" style="color: #000000; margin-right: 12px;"></i>
+            <i class="fa-solid fa-calendar-days  mb-4" style="color: #000000; margin-right: 12px;"></i>
             <span style="opacity: 0.8;"> 12 Januari 2021 - 11 Feb 2021</span>
-            </p>
           </div>
           <div>
-            <p>
             <i class="fa-sharp fa-solid fa-clock" style="color: #000000; margin-right: 12px;"></i>
-            <span style="opacity: 0.8;">Month</span></p>
+            <span style="opacity: 0.8;">3 Month</span></p>
+          </div>
+          <h2 class="tech-label my-4">Technologies</h2>                           
+          <div class="d-flex justify-content-center flex-column">
+            <div>
+              <i class="fa-brands fa-react mb-4" style="color: #000000; margin-right: 6px;"></i><span style="opacity: 0.8;">React Js</span>
+              <i class="fa-brands fa-square-js" style="color: #000000; margin-right: 6px; margin-left: 20px;"></i><span style="opacity: 0.8;">JavaScript</span>
+            </div>
+            <div>
+              <i class="fa-brands fa-node-js mb-4" style="color: #000000; margin-right: 8px;"></i><span style="opacity: 0.8;">Node Js</span>
+              <i class="fa-brands fa-vuejs" style="color: #000000; margin-right: 6px; margin-left: 20px;"></i><span style="opacity: 0.8;">Vue Js</span>
+            </div>
           </div>
         </div>
-        <h2 class="tech-label">Technologies</h2>
-        <div class="detail-blog-tech">
-          <div>
-            <p>
-              <i class="fa-brands fa-react" style="color: #000000; margin-right: 6px;"></i>
-              <span style="opacity: 0.8;">React Js</span>
-            </p>
-          </div>
-          <div>
-            <p>
-              <i class="fa-brands fa-square-js" style="color: #000000; margin-right: 6px;"></i><span style="opacity: 0.8;">JavaScript</span>
-            </p>
-          </div>
-          <div>
-            <p>
-              <i class="fa-brands fa-node-js" style="color: #000000; margin-right: 8px;"></i><span style="opacity: 0.8;">Node Js</span>
-            </p>
-          </div>
-          <div>
-            <p>
-              <i class="fa-brands fa-vuejs" style="color: #000000; margin-right: 6px;"></i><span style="opacity: 0.8;">Vue Js</span>
-            </p>
-          </div>
+        <div class="col-12 mt-5">
+          <p style="width: 100%; text-align: justify;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestiae illum, animi nihil esse odit soluta exercitationem obcaecati velit? Consectetur iste fugiat deserunt, possimus necessitatibus cupiditate quasi, iure voluptas illo sint nihil! Officiis asperiores rem iusto impedit magni error, quas nisi eligendi unde laborum necessitatibus delectus maxime! Qui repellendus veritatis doloribus aliquam non fugit, aspernatur sed at quis nam autem, aliquid voluptas saepe atque, dolorem officiis eius? Soluta maiores magni numquam laborum nostrum. Est illo sequi qui consequatur saepe iste? Sit temporibus vitae excepturi aut nihil corrupti molestiae culpa voluptatum, tenetur neque. Sapiente, reiciendis laboriosam voluptatibus tempora dolorem impedit porro.</p>
         </div>
       </div>
-    </div>
-    <!-- Description blog -->
-    <div class="detail-blog-description">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta sequi dolor voluptas asperiores vitae quisquam enim nam doloremque quasi, ea architecto autem quidem aliquid, quos beatae laborum tempore eum dicta consectetur dolores? Rerum reiciendis cum eius nemo vero animi, quam, voluptatem laborum in architecto error numquam alias recusandae molestiae voluptates placeat quibusdam, impedit id nam laudantium? Numquam, sequi optio qui voluptas dicta possimus ea esse dolorem omnis magni quos, praesentium accusantium earum necessitatibus. Accusantium sequi accusamus, dicta minus commodi dolorem modi perferendis excepturi totam in laborum veritatis atque quia enim nemo nisi illum deleniti incidunt placeat libero eligendi ut ex.</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur illum reprehenderit sapiente alias illo placeat sed at eos, natus hic!</p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum libero quo, eaque dolor nemo doloribus dolores. Nesciunt vitae, ex repellendus, magni ipsam nostrum quibusdam quaerat quam numquam, repellat enim? Obcaecati.
     </div>
   </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </html>
