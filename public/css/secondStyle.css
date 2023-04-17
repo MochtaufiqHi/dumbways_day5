@@ -44,7 +44,6 @@ body {
   justify-content: start;
 }
 
-
 @media screen and (max-width: 1000px) {
   .card {
     width: 14rem !important;
@@ -53,6 +52,12 @@ body {
     display: flex;
     justify-content: center;
   }
+}
+
+@media screen and (max-width: 912px) {
+.row {
+  flex-direction: column;
+}
 }
 
 @media screen and (max-width: 780px) {
@@ -71,12 +76,44 @@ body {
     width: 16rem !important;
     margin: 0px auto;
   }
+  .img-project {
+    width: 520px !important;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .img-project {
+   width: 480px !important;
+ }
 }
 
 @media screen and (max-width: 490px) {
  p.text-card {
   font-size: 14px !important;
  }
+ .img-project {
+  width: 420px !important;
+  }
 }
 
+@media screen and (max-width: 414px) {
+  .img-project {
+   width: 340px !important;
+ }
+}
 
+@media screen and (max-width: 375px) {
+  .img-project {
+   width: 320px !important;
+ }
+}
+
+@media screen and (max-width: 280px) {
+  h1.m-5 {
+    font-size: 16px;
+    margin: 16px 0px !important;
+  }
+  .img-project {
+   width: 240px !important;
+ }
+}
