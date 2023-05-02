@@ -117,11 +117,12 @@
         {{range $index, $data := .Project}}
         <a href="/detail-project/{{$index}}" target="_blank" style="text-decoration: none; color: black;">
           <div class="card m-5" style="width: 16rem;">
-            <img src="/public/img/project.jpeg" class="card-img-top" alt="...">
+            <img src="{{$data.Image}}" class="card-img-top" alt="...">
             <div class="card-body">
               <h4>{{$data.ProjectName}}</h4>
-              <h5 class="card-title opacity-75">3 bulan</h5>
+              <h5 class="card-title opacity-75">{{$data.Duration}} Bulan</h5>
               <p class="card-text mb-4 opacity-75">{{$data.Description}}</p>
+              <!-- <p class="card-text mb-4 opacity-75">{{index .Technologies 2}}</p> -->
             </a>
           
           <div class="d-flex justify-content-center">
