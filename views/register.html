@@ -32,10 +32,10 @@
         <div class="d-flex mb-0" id="nav-respon">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item mx-3 fw-bold fs-5">
-              <a class="nav-link text-light active" aria-current="page" href="/register">Register</a>
+              <a class="nav-link text-light active" aria-current="page" href="/form-register">Register</a>
             </li>
             <li class="nav-item mx-3 fw-bold fs-5">
-              <a class="nav-link text-light" href="/login">Login</a>
+              <a class="nav-link text-light" href="/form-login">Login</a>
             </li>
           </ul>
         </div>
@@ -49,24 +49,24 @@
   </nav>
 
   <!-- Form Login -->
-  <form action="#">
+  <form action="/register" method="POST">
 
     <div class="container mt-5">
       <h4 style="text-align: center;">REGISTER YOUR ACCOUNT</h4>
     <div class="mb-3">
     <div class="mb-3">
       <label for="name" class="form-label">Name</label>
-      <input type="text" class="form-control" id="name">
+      <input type="text" class="form-control" id="name" name="name">
     </div>
       <label for="email" class="form-label">Email</label>
-      <input type="email" class="form-control" id="email">
+      <input type="email" class="form-control" id="email" name="email">
     </div>
     <div class="mb-3">
       <label for="password" class="form-label">Password</label>
-      <input type="password" class="form-control" id="password">
+      <input type="password" class="form-control" id="password" name="password">
     </div>
     <div class="d-flex justify-content-end mt-3">
-      <button type="button" class="btn btn-dark fw-bolder" onclick="getData()">Sumbmit</button>
+      <button type="submit" class="btn btn-dark fw-bolder">Sumbmit</button>
     </div>
   </div>
 </form>

@@ -32,10 +32,10 @@
         <div class="d-flex mb-0" id="nav-respon">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item mx-3 fw-bold fs-5">
-              <a class="nav-link text-light" aria-current="page" href="/register">Register</a>
+              <a class="nav-link text-light" aria-current="page" href="/form-register">Register</a>
             </li>
             <li class="nav-item mx-3 fw-bold fs-5">
-              <a class="nav-link text-light active" href="/login">Login</a>
+              <a class="nav-link text-light active" href="/form-login">Login</a>
             </li>
           </ul>
         </div>
@@ -48,21 +48,32 @@
     </div>
   </nav>
 
-  <!-- Form Login -->
-  <form action="#">
+  
+  {{if .FlashMessage}}
+  {{if .FlashStatus}}
+  <div class="alert alert-success" role="alert">
+    {{.FlashMessage}}
+  </div>
+  {{else}}
+  <div></div>
+  {{end}}
+  {{end}}
 
-    <div class="container mt-5">
-      <h4 style="text-align: center;">LOGIN TO YOUR ACCOUNT</h4>
+  
+<!-- Form Login -->
+<form action="/login" method="post">
+  <div class="container mt-5">
+    <h4 style="text-align: center;">LOGIN TO YOUR ACCOUNT</h4>
     <div class="mb-3">
       <label for="email" class="form-label">Email</label>
-      <input type="email" class="form-control" id="email">
+      <input type="email" class="form-control" id="email" name="email">
     </div>
     <div class="mb-3">
       <label for="password" class="form-label">Password</label>
-      <input type="password" class="form-control" id="password">
+      <input type="password" class="form-control" id="password" name="password">
     </div>
     <div class="d-flex justify-content-end mt-3">
-      <button type="button" class="btn btn-dark fw-bolder" onclick="getData()">Sumbmit</button>
+      <button type="submit" class="btn btn-dark fw-bolder">Sumbmit</button>
     </div>
   </div>
 </form>
