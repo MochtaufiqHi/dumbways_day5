@@ -7,11 +7,13 @@ import (
 	"fmt"
 	"log"
 	"myportfolio/connection"
+	"myportfolio/middleware"
 	"net/http"
 	"strconv"
 	"text/template"
 	"time"
 
+	// "github.com/go-openapi/runtime/middleware"
 	"github.com/gorilla/sessions"
 	"github.com/labstack/echo-contrib/session"
 	"github.com/labstack/echo/v4"
@@ -54,6 +56,7 @@ func main() {
 
 	// server static from public directory
 	e.Static("/public", "public")
+	e.Static("/upload", "upload")
 
 	// initialization to use session
 	e.Use(session.Middleware(sessions.NewCookieStore([]byte("session"))))
@@ -70,8 +73,9 @@ func main() {
 	e.GET("update/:id", updateFormProject)
 	e.GET("/logout", logout)
 
-	e.POST("/add-project", addProject)
+	e.POST("/add-project", middleware.UploadFile(addProject))
 	e.POST("/update-project", updateProject)
+	// e.POST("/update-project", middleware.UploadFile(updateProject))
 	e.POST("/register", register)
 	e.POST("/login", login)
 
@@ -88,7 +92,8 @@ func home(c echo.Context) error {
 	}
 
 	// map(data type) => key and value
-	data, _ := connection.Conn.Query(context.Background(), "SELECT id, name, start_date, end_date, description, technologies, image FROM tb_projects")
+	data, _ := connection.Conn.Query(context.Background(), "SELECT id, name, start_date, end_date, description, technologies, image FROM tb_projects ORDER BY tb_projects.id DESC")
+	// data, _ := connection.Conn.Query(context.Background(), "SELECT tb_projects.id, name, start_date, end_date, description, technologies, image, tb_user.username AS creator FROM tb_projects LEFT JOIN tb_user ON tb_projects.creator = tb_user.id ORDER BY tb_projects.id DESC")
 
 	// create array for the result
 	var result []Project
@@ -96,6 +101,7 @@ func home(c echo.Context) error {
 	for data.Next() {
 		var each = Project{}
 
+		// err := data.Scan(&each.Id, &each.ProjectName, &each.StartDate, &each.EndDate, &each.Description, &each.Technologies, &each.Image)
 		err := data.Scan(&each.Id, &each.ProjectName, &each.StartDate, &each.EndDate, &each.Description, &each.Technologies, &each.Image)
 		if err != nil {
 			fmt.Println(err.Error())
@@ -128,6 +134,7 @@ func home(c echo.Context) error {
 		"FlashMessage": sess.Values["message"],
 		"FlashName":    sess.Values["name"],
 		"DataSession":  userData,
+		"FlashID":      sess.Values["id"],
 	}
 
 	delete(sess.Values, "message")
@@ -184,7 +191,7 @@ func detail(c echo.Context) error {
 
 	var ProjectDetail = Project{}
 
-	err = connection.Conn.QueryRow(context.Background(), "SELECT id, name, start_date, end_date, description, technologies, image  FROM tb_projects WHERE id = $1", id).Scan(&ProjectDetail.Id, &ProjectDetail.ProjectName, &ProjectDetail.StartDate, &ProjectDetail.EndDate, &ProjectDetail.Description, &ProjectDetail.Technologies, &ProjectDetail.Image)
+	err = connection.Conn.QueryRow(context.Background(), "SELECT id, name, start_date, end_date, description, technologies, image  FROM tb_projects WHERE name = $1", id).Scan(&ProjectDetail.Id, &ProjectDetail.ProjectName, &ProjectDetail.StartDate, &ProjectDetail.EndDate, &ProjectDetail.Description, &ProjectDetail.Technologies, &ProjectDetail.Image)
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message ": err.Error()})
@@ -210,6 +217,31 @@ func updateFormProject(c echo.Context) error {
 func addProject(c echo.Context) error {
 	c.Request().ParseForm()
 
+	sess, _ := session.Get("session", c)
+
+	if sess.Values["isLogin"] != true {
+		userData.IsLogin = false
+	} else {
+		userData.IsLogin = sess.Values["isLogin"].(bool)
+		userData.Name = sess.Values["name"].(string)
+	}
+
+	flash := map[string]interface{}{
+		"FlashID": sess.Values["id"],
+	}
+
+	flashID := flash["FlashID"].(int)
+
+	id := flashID
+
+	fmt.Println(id)
+
+	_, err := connection.Conn.Exec(context.Background(), "SELECT id FROM public.tb_user WHERE id = $1;", id)
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"message ": err.Error()})
+	}
+
 	projectName := c.FormValue("projectName")
 	startDate := c.FormValue("start-date")
 	endDate := c.FormValue("end-date")
@@ -218,7 +250,8 @@ func addProject(c echo.Context) error {
 	nextJs := c.FormValue("nextJs")
 	typescript := c.FormValue("typescript")
 	description := c.FormValue("description")
-	image := "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8dGVjaHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+	image := c.Get("dataFile").(string)
+	creator := flashID
 
 	var technologies []string
 
@@ -243,7 +276,7 @@ func addProject(c echo.Context) error {
 		technologies = append(technologies, "")
 	}
 
-	_, err := connection.Conn.Exec(context.Background(), "INSERT INTO public.tb_projects(name, start_date, end_date, description, technologies, image) VALUES($1, $2, $3, $4, $5, $6)", projectName, startDate, endDate, description, technologies, image)
+	_, err = connection.Conn.Exec(context.Background(), "INSERT INTO public.tb_projects(name, start_date, end_date, description, technologies, image, creator) VALUES($1, $2, $3, $4, $5, $6, $7)", projectName, startDate, endDate, description, technologies, image, creator)
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message ": err.Error()})
@@ -264,9 +297,8 @@ func deleteProject(c echo.Context) error {
 }
 
 func updateProject(c echo.Context) error {
-	id, _ := strconv.Atoi(c.Param("id"))
-
 	c.Request().ParseForm()
+	id, _ := strconv.Atoi(c.Param("id"))
 
 	projectName := c.FormValue("projectName")
 	startDate := c.FormValue("start-date")
@@ -276,7 +308,10 @@ func updateProject(c echo.Context) error {
 	nextJs := c.FormValue("nextJs")
 	typescript := c.FormValue("typescript")
 	description := c.FormValue("description")
-	image := "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8dGVjaHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+	// image := c.Get("dataFile").(string)
+	image := "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dGVjaG5vbG9neXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+
+	// var ProjectDetail = Project{}
 
 	var technologies []string
 
@@ -301,6 +336,14 @@ func updateProject(c echo.Context) error {
 		technologies = append(technologies, "")
 	}
 
+	// id := ProjectDetail.Id
+
+	// err := connection.Conn.QueryRow(context.Background(), "SELECT id FROM tb_projects WHERE id=$1", id).Scan(&ProjectDetail.Id)
+
+	// if err != nil {
+	// 	return c.JSON(http.StatusInternalServerError, map[string]string{"message ": err.Error()})
+	// }
+
 	_, err := connection.Conn.Exec(context.Background(), "UPDATE tb_projects SET name=$1, start_date=$2, end_date=$3, description=$4, technologies=$5, image=$6 WHERE id=$7", projectName, startDate, endDate, description, technologies, image, id)
 
 	fmt.Println(id)
@@ -308,6 +351,14 @@ func updateProject(c echo.Context) error {
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message ": err.Error()})
 	}
+
+	// _, err = connection.Conn.Exec(context.Background(), "UPDATE tb_projects SET name=$1, start_date=$2, end_date=$3, description=$4, technologies=$5, image=$6 WHERE id=$7", projectName, startDate, endDate, description, technologies, image, id)
+
+	// fmt.Println(id)
+
+	// if err != nil {
+	// 	return c.JSON(http.StatusInternalServerError, map[string]string{"message ": err.Error()})
+	// }
 
 	return c.Redirect(http.StatusMovedPermanently, "/")
 }
@@ -390,11 +441,7 @@ func register(c echo.Context) error {
 	// generate password
 	passwordHash, _ := bcrypt.GenerateFromPassword([]byte(password), 10)
 
-	fmt.Println(name)
-	fmt.Print(email)
-	fmt.Println(passwordHash)
-
-	// _, err = connection.Conn.Exec(context.Background(), "INSERT INTO tb_user (username, email, password) VALUES($1, $2, $3)", name, email, passwordHash)
+	_, err = connection.Conn.Exec(context.Background(), "INSERT INTO tb_user (username, email, password) VALUES($1, $2, $3)", name, email, passwordHash)
 
 	if err != nil {
 		redirectWithMessage(c, "Register failed, please try again :)", false, "/form-register")
